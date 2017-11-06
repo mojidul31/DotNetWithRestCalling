@@ -1,0 +1,43 @@
+﻿@model List<CallingRestApiFromController.Models.Department>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Show All Departments </h2>
+@if (@ViewBag.msg != null)
+{
+    <h3>@ViewBag.msg</h3>
+}
+<table class="table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Department Code</th>
+            <th>Department Name</th>            
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var department in Model)
+            {
+            <tr>
+                <td>@department.id</td>
+                <td>@department.deptCode</td>
+                <td>@department.deptName</td>                
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = department.id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = department.id })
+                </td>
+            </tr>
+        }
+        <tr>
+            <td>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+
